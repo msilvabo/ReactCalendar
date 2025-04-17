@@ -8,8 +8,8 @@ export const FabDelete = () => {
   const handleClickDelete = () => {
     startdeleteEvent();
   }
-  console.log(isDateModalOpen);
-  console.log(hasEventSelected);
+  // console.log(isDateModalOpen);
+  // console.log(hasEventSelected);
   
   return (
     <button

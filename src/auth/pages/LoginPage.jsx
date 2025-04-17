@@ -59,6 +59,7 @@ export const LoginPage = () => {
                                 name="loginEmail"
                                 value = {loginEmail}
                                 onChange={ onLoginInputChange}
+                                autoComplete ="loginEmail"
 
                             />
                         </div>
@@ -70,6 +71,7 @@ export const LoginPage = () => {
                                 name="loginPassword"
                                 value = {loginPassword}
                                 onChange={ onLoginInputChange}
+                                autoComplete="current-password"
                             />
                         </div>
                         <div className="form-group mb-2 "  style={{textAlign:'center', marginTop:'30px'}}>
@@ -93,6 +95,7 @@ export const LoginPage = () => {
                                 name="registerName"
                                 value = {registerName}
                                 onChange={ onRegisterInputChange}
+                                autoComplete="registerName"
                             />
                         </div>
                         <div className="form-group mb-2">
@@ -103,6 +106,7 @@ export const LoginPage = () => {
                                 name="registerEmail"
                                 value = {registerEmail}
                                 onChange={ onRegisterInputChange}
+                                autoComplete="registerEmail"
                             />
                         </div>
                         <div className="form-group mb-2">
@@ -113,6 +117,7 @@ export const LoginPage = () => {
                                 name="registerPassword1"
                                 value = {registerPassword1}
                                 onChange={ onRegisterInputChange}
+                                autoComplete='registerPassword1'
                             />
                         </div>
 
@@ -124,6 +129,7 @@ export const LoginPage = () => {
                                 name="registerPassword2"
                                 value = {registerPassword2}
                                 onChange={ onRegisterInputChange}
+                                autoComplete='registerPassword2'
                             />
                         </div>
 
