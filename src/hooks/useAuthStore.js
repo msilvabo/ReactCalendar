@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import {calendarApi} from "../api";
 import { clearErrorMessage, onLogin, onLogout } from "../store/auth/authSlice";
+import { onLogOutCalendar } from "../store/calendar/calendarSlice";
 
 export const useAuthStore = () => {
 
@@ -29,7 +30,7 @@ export const useAuthStore = () => {
             const {data} = await calendarApi.get('auth/renew');
             localStorage.setItem('token', data.token);
             localStorage.setItem('token-init-date', new Date().getTime());
-            dispatch(onLogin({name: data.name, uid: data.UID}));
+            dispatch(onLogin({name: data.name, uid: data.uid}));
         } catch (error) {
             localStorage.clear();
             dispatch( onLogout());
@@ -39,6 +40,7 @@ export const useAuthStore = () => {
     const starLogout = () => {
         localStorage.clear();
         dispatch ( onLogout());
+        dispatch(onLogOutCalendar());
     }
 
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CalendarEvent, CalendarModal, FabAddNew, FabDelete, NavBar } from "../";
 import { Calendar } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -11,20 +11,32 @@ import { useCalendarStore } from "../../hooks/useCalendarStore";
 
 export const CalendarPage = () => {
   
-  const {events, setActiveEvent } = useCalendarStore();
+  const {events, setActiveEvent, startLoadingEvents } = useCalendarStore();
   const activeEvent = useSelector(state => state.calendar.activeEvent);
+  const {user} = useSelector(state => state.auth);
   const {openDateModal} = useUiStore();
-  const eventStyleGetter = (event, start, end, isSelected ) =>{
 
-  const isSelectEvent = activeEvent && activeEvent._id === event._id;
-  const style = {
-    backgroundColor: isSelectEvent ? "#FF5733" : "#347C7F",
-    borderRadius: '0px',
-    opacity: 0.8,
-    color: 'white'
-  }
-  return {style}
-} 
+  const eventStyleGetter = (event, start, end, isSelected ) => {
+    const isOwn = event.user._id === user.uid;
+    console.log({isOwn});
+    
+    const isSelectEvent = activeEvent && activeEvent.id === event.id;
+    const style = {
+      backgroundColor: isSelectEvent 
+                              ? "#FF5733" 
+                              : isOwn 
+                                ? "#8e44ad"
+                                : "#347C7F",
+      borderRadius: '0px',
+      opacity: 0.8,
+      color: 'white'
+    }
+    return {style}
+  } 
+
+useEffect(() => {
+  startLoadingEvents()
+}, []);  
 
 const onDoubleClick = (event) => {
   openDateModal();
